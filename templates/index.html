@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Multimodal AI Assistant</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .container{
+            background: white;
+            width: 700px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        input, button{
+            margin: 10px;
+            padding: 10px;
+        }
+
+        img{
+            width: 300px;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Multimodal AI Assistant</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <h2>Ask AI</h2>
+
+        <input
+            type="text"
+            name="prompt"
+            placeholder="Ask something..."
+            style="width:300px;"
+        >
+
+        <br>
+
+        <h2>Upload Image</h2>
+
+        <input type="file" name="image">
+
+        <br>
+
+        <h2>Upload Audio</h2>
+
+        <input type="file" name="audio">
+
+        <br><br>
+
+        <button type="submit">
+            Process
+        </button>
+
+    </form>
+
+    {% if ai_response %}
+
+        <h2>AI Text Response</h2>
+
+        <p>{{ ai_response }}</p>
+
+    {% endif %}
+
+    {% if uploaded_file %}
+
+        <img src="{{ url_for('static', filename='uploads/' + uploaded_file) }}">
+
+    {% endif %}
+
+    {% if image_caption %}
+
+        <h2>Image Caption</h2>
+
+        <p>{{ image_caption }}</p>
+
+    {% endif %}
+
+    {% if speech_text %}
+
+        <h2>Speech to Text</h2>
+
+        <p>{{ speech_text }}</p>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
